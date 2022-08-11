@@ -19,7 +19,7 @@ app.use(cartRouter)
 
 const PORT = environments.PORT;
 
-app.listen(PORT, async () => {
+app.listen(PORT || 3001, async () => {
   console.log(`Server is running on PORT ${PORT}`);
   await connecToMongoDb();
 });
