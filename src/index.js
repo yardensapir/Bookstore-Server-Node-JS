@@ -6,7 +6,7 @@ import connecToMongoDb from "./databases/mongoose.db.js";
 import userRouter from "./routers/user.router.js";
 import bookRouter from "./routers/book.router.js";
 import cartRouter from './routers/cart.router.js'
-
+require("dotenv").config()
 dotenv.config();
 
 const app = express();
@@ -19,7 +19,7 @@ app.use(cartRouter)
 
 const PORT = environments.PORT;
 
-app.listen(PORT || 3001, async () => {
+app.listen(process.env.PORT || 3001, async () => {
   console.log(`Server is running on PORT ${PORT}`);
   await connecToMongoDb();
 });
