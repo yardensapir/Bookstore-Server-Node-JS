@@ -5,10 +5,9 @@ import environments from "../config/environments.js";
 import connecToMongoDb from "./databases/mongoose.db.js";
 import userRouter from "./routers/user.router.js";
 import bookRouter from "./routers/book.router.js";
-import path from 'path'
 import cartRouter from "./routers/cart.router.js";
 
-
+const path = require('path')
 dotenv.config();
 
 const app = express();
