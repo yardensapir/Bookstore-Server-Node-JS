@@ -17,7 +17,11 @@ app.use(userRouter);
 app.use(bookRouter);
 app.use(cartRouter) 
 
+app.get('/',(req,res)=>{
+  res.send('Hello from the server')
+})
 const PORT = environments.PORT;
+
 
 app.listen(PORT || 3001, async () => {
   console.log(`Server is running on PORT ${PORT}`);
