@@ -7,7 +7,6 @@ import userRouter from './routers/user.router.js'
 import bookRouter from './routers/book.router.js'
 import cartRouter from './routers/cart.router.js'
 
-const path = require('path')
 dotenv.config()
 
 const app = express()
@@ -18,14 +17,9 @@ app.use(userRouter)
 app.use(bookRouter)
 app.use(cartRouter)
 
-app.use(express.static(path.resolve(__dirname, './client/build')))
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './client/build, index.html'))
-})
-
 const PORT = environments.PORT || 3001
 
-app.listen(PORT, async () => {
+app.listen(PORT , async () => {
   console.log(`Server is running on PORT ${PORT}`)
   await connecToMongoDb()
 })
