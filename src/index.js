@@ -17,6 +17,9 @@ app.use(userRouter)
 app.use(bookRouter)
 app.use(cartRouter)
 
+app.get("/",(req,res)=>{
+  res.send("Hello from server !")
+})
 const PORT = environments.PORT || 3001
 
 app.listen(PORT , async () => {
