@@ -3,13 +3,11 @@ import Cart from "../models/cart.model.js";
 export const getUserCartInfo = async (req, res) => {
   const user = req.user;
 
-  const findUserCart = await Cart.findOne(user._id);
+  const findUserCart = await Cart.findOne({ ownerID: user._id });
 
   if (!findUserCart) {
     throw new Error();
   }
-
-
 
   try {
     await findUserCart.populate("books.bookID");
@@ -110,19 +108,19 @@ export const checkOut = async (req, res) => {
     }
 
     const userCart = await Cart.findOne({ owner: user._id });
-    
+
     if (userCart.books.length === 0) {
       throw new Error();
     }
-    userCart.books = []
-    await userCart.save()
+    userCart.books = [];
+    await userCart.save();
 
     res.send({
-      status:200,
-      statusText:"Ok",
-      data:{userCart: userCart},
-      message: 'Checkout succseful'
-    })
+      status: 200,
+      statusText: "Ok",
+      data: { userCart: userCart },
+      message: "Checkout succseful",
+    });
   } catch (err) {
     res.status(400).send({
       status: 400,
